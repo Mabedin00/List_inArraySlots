@@ -5,7 +5,8 @@
 Length- keeps track of the list's size
 
 ## Contructor
-One arg contructor that takes in an int to determine the staring length of the list
+No arg constructor that creates an empty list with a length of 1.
+One arg contructor that creates an empty list with the length of the given value.
 
 ## Methods
 - add(Object element, int index)- places the given element at the given position
