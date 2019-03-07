@@ -6,17 +6,18 @@
 public class List_inArraySlots {
 
     // declare fields here
-    private int length;
+    public int length;
     private int filledElements;
-    private int[] list;
+    private int[] refToList;
 
     /**
       Construct an empty list with a small initial capacity.
      */
     public List_inArraySlots() {
-    	int length = 1;
+    	length = 1;
     	int filledElements = 0;
-    	list = new int[1];
+    	refToList = new int[length];
+        // System.out.println(refToList.length + " " + this.length);
     	
     }
 
@@ -35,8 +36,8 @@ public class List_inArraySlots {
       */ 
     public String toString() {
     	String output = "[";
-    	for (int n; n < filledElements; n++){
-    		output+= n + "," ;
+    	for (int n = 0; n < filledElements; n++){
+    		output += refToList[n] + "," ;
     	}
     	output += "]";
     	return output;
@@ -48,21 +49,39 @@ public class List_inArraySlots {
       
       @return true, in keeping with conventions yet to be discussed
      */
-     // public boolean add( int value) {
-     // }
+     public boolean add( int value) {
+         // System.out.println(length + "length");
+         if (filledElements == length) {
+             // System.out.println(filledElements + "filledElements");
+             // System.out.println(length + "length");
+             expand();
+         }
+         // System.out.println(filledElements);
+         // System.out.println(this);
+         refToList[filledElements] = value;
+         filledElements ++;
+         return true;
+     }
 
 
     /** 
       Double the capacity of the List_inArraySlots, 
       preserving existing data
      */
-     // private void expand() {
-        // System.out.println( "expand... (for debugging)");
-           // /* S.O.P. rules for debugging:
-              // Working methods should be silent. But during 
-              // development, the programmer must verify that 
-              // this method is called when that is appropriate.
-              // So test using the println(), then comment it out.
-              // */
-     // }
+     private void expand() {
+        System.out.println( "expand... (for debugging)");
+        // System.out.println(length + "length");
+        int[] newList = new int[length * 2];
+        for (int n = 0; n < filledElements; n++) {
+                 newList[n] = refToList[n]; 
+             }
+        length *= 2;
+        this.refToList = newList;
+           /* S.O.P. rules for debugging:
+              Working methods should be silent. But during 
+              development, the programmer must verify that 
+              this method is called when that is appropriate.
+              So test using the println(), then comment it out.
+              */
+     }
 }
