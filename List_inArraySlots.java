@@ -102,24 +102,31 @@ public class List_inArraySlots {
       and any subsequent elements to the right
       (that is, increase the index associated with each).
      */
+     // First Solution
+     // public void add (int index, int value) {
+     // if (filledElements + 1 == elements.length) {
+     //     expand();
+     // }
+     // int endIndex = filledElements;
+     //
+     // for (int i = index ; i <= filledElements; i++) {
+     //     elements[endIndex + 1] = elements[endIndex];
+     //     endIndex--;
+     // }
+     // filledElements++;
+     // elements[index] = value;
+     //
+     // }
+
+     // Second Solution
      public void add( int index, int value) {
-         // int[] bigger = new int[ filledElements + 1];
-         // System.out.println(bigger.length + " " + filledElements );
-         // for (int i = 0; i < filledElements; i++){
-         //    if (i != index)
-         //        bigger[i] = elements [i];
-         //    else {
-         //        for (int n = i + 1; n <= filledElements; n++)
-         //            bigger[n] = elements[n-1];
-         //        bigger[i] = value;
-         //        System.out.println(i);
-         //        if (i + 1 == index)
-         //            bigger[i+1] = value;
-         //        i = filledElements;
-         //    }
-         // }
-         // filledElements++;
-         // elements = bigger;
+
+         if (filledElements == elements.length) expand();
+         for(int i = filledElements; i > index; i-- ){
+             elements[i] = elements[i-1];
+         }
+         elements[index] = value;
+         filledElements++;
      }
 
 
@@ -133,6 +140,7 @@ public class List_inArraySlots {
          int output = elements[index];
          for (int i = index; i < filledElements; i++) {
             elements[i] = elements[i + 1];
+            // System.out.println(this);
         }
         filledElements--;
         return output;

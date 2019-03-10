@@ -54,18 +54,18 @@ public class UserOfList {
         setTest(16, list);
         System.out.println();
 
-        // test adding at a specified position
-        // addAtTest( 0, 29, list); // beginning of the list
-        //
-        // // end of the list using the new add method
-        // addAtTest( list.size(), 17, list);
-        //
-        // addAtTest( 2, 19, list); // middle of a small list
+        //test adding at a specified position
+        addAtTest( 0, 29, list); // beginning of the list
 
-        // // force an expansion
-        // addAtTest( 2, 23, list);
-        // addAtTest( 2, 23, list);
-        // addAtTest( 2, 23, list);
+        // end of the list using the new add method
+        addAtTest( list.size(), 17, list);
+
+        addAtTest( 2, 19, list); // middle of a small list
+
+        // force an expansion
+        addAtTest( 2, 23, list);
+        addAtTest( 2, 23, list);
+        addAtTest( 2, 23, list);
         // test removing an element
         System.out.println("removing value " + list.remove( 6)
                           + ", leaving " + list.size() + " elements:");
