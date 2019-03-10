@@ -54,12 +54,21 @@ public class UserOfList {
         setTest(16, list);
         System.out.println();
 
+<<<<<<< HEAD
         //test adding at a specified position
         addAtTest( 0, 29, list); // beginning of the list
 
         // end of the list using the new add method
         addAtTest( list.size(), 17, list);
 
+=======
+        // test adding at a specified position
+        addAtTest( 0, 29, list); // beginning of the list
+        
+        // end of the list using the new add method
+        addAtTest( list.size(), 17, list);
+        
+>>>>>>> 192d5261573ae4b24ec8f873418422f85cce37d2
         addAtTest( 2, 19, list); // middle of a small list
 
         // force an expansion

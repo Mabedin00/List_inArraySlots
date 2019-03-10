@@ -102,6 +102,7 @@ public class List_inArraySlots {
       and any subsequent elements to the right
       (that is, increase the index associated with each).
      */
+<<<<<<< HEAD
      // First Solution
      // public void add (int index, int value) {
      // if (filledElements + 1 == elements.length) {
@@ -128,6 +129,22 @@ public class List_inArraySlots {
          elements[index] = value;
          filledElements++;
      }
+=======
+     public void add (int index, int value) {
+         if (filledElements + 1 == elements.length) {
+             expand();
+         }
+         int endIndex = filledElements;
+         
+         for (int i = index ; i <= filledElements; i++) {
+             elements[endIndex + 1] = elements[endIndex];
+             endIndex--;
+         }
+         filledElements++;
+         elements[index] = value;
+             
+         }
+>>>>>>> 192d5261573ae4b24ec8f873418422f85cce37d2
 
 
     /**
@@ -146,4 +163,5 @@ public class List_inArraySlots {
         return output;
 
      }
+     
 }
