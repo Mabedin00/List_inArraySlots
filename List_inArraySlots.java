@@ -5,83 +5,137 @@
 
 public class List_inArraySlots {
 
-    // declare fields here
-    public int length;
-    private int filledElements;
-    private int[] refToList;
+    private int[] elements;     // container for the elements of the list
+    private int filledElements; // the number of elements in this list
+
+    private static final int INITIAL_CAPACITY = 10;
 
     /**
       Construct an empty list with a small initial capacity.
      */
     public List_inArraySlots() {
-    	length = 1;
-    	int filledElements = 0;
-    	refToList = new int[length];
-        // System.out.println(refToList.length + " " + this.length);
-    	
+        elements = new int[ INITIAL_CAPACITY];
+        // filledElements has been initialized to the desired value, 0
     }
 
 
-    /** 
+    /**
       @return the number of elements in this list
      */
     public int size() {
-    	return filledElements;
+        return filledElements;
     }
 
 
-     /** 
+     /**
        @return a string representation of this list,
        in [a,b,c,] format
-      */ 
+      */
     public String toString() {
-    	String output = "[";
-    	for (int n = 0; n < filledElements; n++){
-    		output += refToList[n] + "," ;
-    	}
-    	output += "]";
-    	return output;
+        String result = "[";
+        for( int elemIndex = 0; elemIndex < filledElements; elemIndex++)
+            result += elements[ elemIndex] + ",";
+        return result + "]";
     }
 
-    
-    /** 
+
+    /**
       Appends @value to the end of this list.
-      
       @return true, in keeping with conventions yet to be discussed
      */
      public boolean add( int value) {
-         // System.out.println(length + "length");
-         if (filledElements == length) {
-             // System.out.println(filledElements + "filledElements");
-             // System.out.println(length + "length");
-             expand();
-         }
-         // System.out.println(filledElements);
-         // System.out.println(this);
-         refToList[filledElements] = value;
-         filledElements ++;
-         return true;
-     }
+         // expand if necessary
+         if( filledElements == elements.length) expand();
+
+         elements[ filledElements] = value;
+         filledElements++;
+         // idiomatic version: elements[ filledElements++] = value;
+        return true;
+}
 
 
-    /** 
-      Double the capacity of the List_inArraySlots, 
-      preserving existing data
+    /**
+      Double the capacity of the List_inArraySlots,
+      preserving existing data.
      */
      private void expand() {
         System.out.println( "expand... (for debugging)");
-        // System.out.println(length + "length");
-        int[] newList = new int[length * 2];
-        for (int n = 0; n < filledElements; n++) {
-                 newList[n] = refToList[n]; 
-             }
-        length *= 2;
-        this.refToList = newList;
            /* S.O.P. rules for debugging:
-              Working methods should be silent. But during 
-              development, the programmer must verify that 
+              Working methods should be silent. But during
+              development, the programmer must verify that
               this method is called when that is appropriate.
               So test using the println(), then comment it out.
               */
+        int[] bigger = new int[ elements.length * 2];
+        for( int elemIndex = 0; elemIndex < filledElements; elemIndex++)
+            bigger[ elemIndex] = elements[ elemIndex];
+        elements = bigger;
+     }
+    /**
+      accessor
+      @return element @index from this list
+      precondition: @index is within the bounds of the array.
+          (Having warned the user about this precondition,
+           you should NOT complicate your code to check
+           whether user violated the condition.)
+     */
+    public int get( int index ) {
+        return elements[index];
+    }
+
+
+    /**
+      Set value at @index to @newValue
+      @return old value at @index
+      @precondition: @index is within the bounds of this list.
+     */
+    public int set( int index, int newValue ) {
+        int output = elements[index];
+        elements[index] = newValue;
+        return output;
+    }
+
+
+    /**
+      Insert @value at position @index in this list.
+      Shift the element currently at that position (if any)
+      and any subsequent elements to the right
+      (that is, increase the index associated with each).
+     */
+     public void add( int index, int value) {
+         // int[] bigger = new int[ filledElements + 1];
+         // System.out.println(bigger.length + " " + filledElements );
+         // for (int i = 0; i < filledElements; i++){
+         //    if (i != index)
+         //        bigger[i] = elements [i];
+         //    else {
+         //        for (int n = i + 1; n <= filledElements; n++)
+         //            bigger[n] = elements[n-1];
+         //        bigger[i] = value;
+         //        System.out.println(i);
+         //        if (i + 1 == index)
+         //            bigger[i+1] = value;
+         //        i = filledElements;
+         //    }
+         // }
+         // filledElements++;
+         // elements = bigger;
+     }
+
+
+    /**
+      Remove the element at position @index in this list.
+      Shift any subsequent elements to the left (that is,
+      decrease the index associated with each).
+      @return the value that was removed from the list
+     */
+     public int remove( int index) {
+         int output = elements[index];
+         for (int i = index; i < filledElements; i++) {
+            elements[i] = elements[i + 1];
+        }
+        filledElements--;
+        return output;
+
      }
 }
