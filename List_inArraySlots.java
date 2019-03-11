@@ -1,12 +1,24 @@
 /**
-  Implement a list of integer elements, including
-  both data and operations.
+  Implement a list of diverse types, including
+  integers, double-precision floating point numbers,
+  and Strings.
  */
 
 public class List_inArraySlots {
 
-    private int[] elements;     // container for the elements of the list
+    private int[]    intElements;
+    private double[] doubleElements;
+    private String[] stringElements;
     private int filledElements; // the number of elements in this list
+    
+    /* type identifier for each element
+       That is, typeOfElements[i] == 0 means element i is an integer;
+                                     1 means element i is a double;
+                                     2 means element i is a String.
+        Optional extra education in programming (not comp sci):
+            replace these "magic numbers" with an "enumerated type".
+     */
+    private int[] typeOfElements;
 
     private static final int INITIAL_CAPACITY = 10;
 
@@ -14,139 +26,48 @@ public class List_inArraySlots {
       Construct an empty list with a small initial capacity.
      */
     public List_inArraySlots() {
-        elements = new int[ INITIAL_CAPACITY];
-        // filledElements has been initialized to the desired value, 0
     }
 
 
     /**
       @return the number of elements in this list
      */
-    public int size() {
-        return filledElements;
-    }
+    // public int size() {
+    // }
 
 
      /**
        @return a string representation of this list,
        in [a,b,c,] format
       */
-    public String toString() {
-        String result = "[";
-        for( int elemIndex = 0; elemIndex < filledElements; elemIndex++)
-            result += elements[ elemIndex] + ",";
-        return result + "]";
-    }
+    // public String toString() {
+    // }
 
 
     /**
       Appends @value to the end of this list.
+
       @return true, in keeping with conventions yet to be discussed
      */
-     public boolean add( int value) {
-         // expand if necessary
-         if( filledElements == elements.length) expand();
-
-         elements[ filledElements] = value;
-         filledElements++;
-         // idiomatic version: elements[ filledElements++] = value;
-        return true;
-}
+     // public boolean add( int type   // same meaning as in typeOfElements
+                       // , int    intValue
+                       // , double doubleValue
+                       // , String stringValue
+                       // ) {
+     // }
 
 
     /**
       Double the capacity of the List_inArraySlots,
       preserving existing data.
      */
-     private void expand() {
-        System.out.println( "expand... (for debugging)");
-           /* S.O.P. rules for debugging:
-              Working methods should be silent. But during
-              development, the programmer must verify that
-              this method is called when that is appropriate.
-              So test using the println(), then comment it out.
-              */
-        int[] bigger = new int[ elements.length * 2];
-        for( int elemIndex = 0; elemIndex < filledElements; elemIndex++)
-            bigger[ elemIndex] = elements[ elemIndex];
-        elements = bigger;
-     }
-    /**
-      accessor
-      @return element @index from this list
-      precondition: @index is within the bounds of the array.
-          (Having warned the user about this precondition,
-           you should NOT complicate your code to check
-           whether user violated the condition.)
-     */
-    public int get( int index ) {
-        return elements[index];
-    }
-
-
-    /**
-      Set value at @index to @newValue
-      @return old value at @index
-      @precondition: @index is within the bounds of this list.
-     */
-    public int set( int index, int newValue ) {
-        int output = elements[index];
-        elements[index] = newValue;
-        return output;
-    }
-
-
-    /**
-      Insert @value at position @index in this list.
-      Shift the element currently at that position (if any)
-      and any subsequent elements to the right
-      (that is, increase the index associated with each).
-     */
-<<<<<<< HEAD
-     // First Solution
-     // public void add (int index, int value) {
-     // if (filledElements + 1 == elements.length) {
-     //     expand();
+     // private void expand() {
+        // System.out.println( "expand... (for debugging)");
+           // /* S.O.P. rules for debugging:
+              // Working methods should be silent. But during
+              // development, the programmer must verify that
+              // this method is called when that is appropriate.
+              // So test using the println(), then comment it out.
+              // */
      // }
-     // int endIndex = filledElements;
-     //
-     // for (int i = index ; i <= filledElements; i++) {
-     //     elements[endIndex + 1] = elements[endIndex];
-     //     endIndex--;
-     // } 
-     // filledElements++;
-     // elements[index] = value;
-     //
-     // }
-
-     // Second Solution
-     public void add( int index, int value) {
-
-         if (filledElements == elements.length) expand();
-         for(int i = filledElements; i > index; i-- ){
-             elements[i] = elements[i-1];
-         }
-         elements[index] = value;
-         filledElements++;
-     }
-
-
-
-    /**
-      Remove the element at position @index in this list.
-      Shift any subsequent elements to the left (that is,
-      decrease the index associated with each).
-      @return the value that was removed from the list
-     */
-     public int remove( int index) {
-         int output = elements[index];
-         for (int i = index; i < filledElements; i++) {
-            elements[i] = elements[i + 1];
-            // System.out.println(this);
-        }
-        filledElements--;
-        return output;
-
-     }
-     
 }
